@@ -7,14 +7,23 @@ var routes = require('./routes');
 var initDB = require("./db")
 
 var app = express();
-
+var AUTH_TOKEN = "secret"
 initDB()
 app.set('veiw engine', 'html')
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(function(req, res, next) {
+  var token = req.headers.token
+  if (token !== AUTH_TOKEN) {
+    return res.send(401, "Unauthorized Access");
+  }
+  next()
+})
+
 app.use('/', routes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

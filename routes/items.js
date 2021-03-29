@@ -5,8 +5,9 @@ var asyncHandler = require('express-async-handler')
 
 // create item
 router.post('/', asyncHandler(itemsControllers.createItem));
+router.get('/', asyncHandler(itemsControllers.getItem));
+router.patch('/:itemId', asyncHandler(itemsControllers.updateItem));
 router.get('/list', asyncHandler(itemsControllers.getItemsList));
-
 // get item
 
 // get items list

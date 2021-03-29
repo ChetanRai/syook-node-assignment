@@ -1,4 +1,3 @@
-// models/answers/model.js
 const mongoose = require('mongoose');
 const { schema } = require('./schema');
 
